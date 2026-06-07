@@ -1,0 +1,69 @@
+services:
+
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    restart: always
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    environment:
+      - CLUSTER_NAME=test
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+    volumes:
+      - namenode:/hadoop/dfs/name
+
+  datanode1:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode1
+    restart: always
+    environment:
+      - SERVICE_PRECONDITION=namenode:9870
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+    volumes:
+      - datanode1:/hadoop/dfs/data
+    depends_on:
+      - namenode
+
+  datanode2:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode2
+    restart: always
+    environment:
+      - SERVICE_PRECONDITION=namenode:9870
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+    volumes:
+      - datanode2:/hadoop/dfs/data
+    depends_on:
+      - namenode
+
+  spark:
+    image: apache/spark:3.5.1
+    container_name: spark
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    command: >
+      /opt/spark/bin/spark-class
+      org.apache.spark.deploy.master.Master
+    depends_on:
+      - namenode
+
+  jupyter:
+    image: jupyter/pyspark-notebook
+    container_name: jupyter
+    restart: always
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    environment:
+      - SPARK_MASTER=spark://spark:7077
+    depends_on:
+      - spark
+      - namenode
+
+volumes:
+  namenode:
+  datanode1:
+  datanode2:

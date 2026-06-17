@@ -105,9 +105,9 @@ Fraud Classification Model
 Model Evaluation
 ```
 
-```markdown
+
 ![Architecture](architecture/architecture.png)
-```
+
 
 ---
 

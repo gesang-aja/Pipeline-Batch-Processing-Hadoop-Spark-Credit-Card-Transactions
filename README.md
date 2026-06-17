@@ -24,9 +24,8 @@ Permasalahan yang ingin diselesaikan dalam proyek ini meliputi:
 Cakupan pekerjaan dalam proyek ini meliputi:
 
 * Exploratory Data Analysis (EDA).
-* Analisis distribusi transaksi fraud dan non-fraud.
-* Analisis karakteristik transaksi berdasarkan nilai transaksi (amount).
 * Data preprocessing dan feature engineering.
+* Analisis karakteristik customer dengan clustering.
 * Penanganan ketidakseimbangan data (imbalanced data).
 * Pembangunan model klasifikasi fraud.
 * Evaluasi performa model.
@@ -37,7 +36,7 @@ Cakupan pekerjaan dalam proyek ini meliputi:
 ## Dataset
 
 Dataset yang digunakan merupakan dataset transaksi keuangan yang berisi informasi terkait aktivitas transaksi pelanggan.
-
+sumber data : https://www.kaggle.com/datasets/kartik2112/fraud-detection
 Beberapa fitur yang digunakan antara lain:
 
 * Transaction Amount (`amt`)
@@ -127,8 +126,7 @@ docker ps
 
 Hasil analisis menunjukkan bahwa dataset memiliki ketidakseimbangan kelas yang sangat tinggi.
 
-* Non-Fraud : 99,42%
-* Fraud : 0,58%
+![Architecture](hasil/summary/class-dist.png)
 
 Kondisi ini menyebabkan model berpotensi bias terhadap kelas mayoritas sehingga diperlukan teknik penanganan imbalance.
 
@@ -139,6 +137,8 @@ Nilai transaksi dikelompokkan menjadi tiga kategori:
 * Low
 * Medium
 * High
+
+![Architecture](hasil/summary/amt.png)
 
 Hasil analisis menunjukkan bahwa transaksi fraud lebih banyak ditemukan pada kelompok transaksi bernilai tinggi dibandingkan kelompok lainnya. Hal ini menunjukkan bahwa fitur amount memiliki kontribusi penting dalam mendeteksi fraud.
 
@@ -168,24 +168,7 @@ Model machine learning digunakan untuk mengklasifikasikan transaksi ke dalam dua
 
 ### Alur Pemodelan
 
-```text
-Raw Data
-    │
-    ▼
-Preprocessing
-    │
-    ▼
-Handling Imbalance
-    │
-    ▼
-Model Training
-    │
-    ▼
-Prediction
-    │
-    ▼
-Evaluation
-```
+![Architecture](architecture/pipeline_classify.png)
 
 ---
 
@@ -229,11 +212,9 @@ Berdasarkan hasil analisis diperoleh beberapa temuan penting:
 fraud-detection-big-data/
 │
 ├── notebooks/
-├── scripts/
 ├── architecture/
-├── results/
-├── docs/
-├── docker-compose.yml
+├── scripts/
+├── hasil/
 ├── requirements.txt
 └── README.md
 ```

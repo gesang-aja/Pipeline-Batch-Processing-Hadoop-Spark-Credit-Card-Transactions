@@ -168,7 +168,7 @@ Model machine learning digunakan untuk mengklasifikasikan transaksi ke dalam dua
 
 ### Alur Pemodelan
 
-![Architecture](architecture/pipeline_classify.png)
+![Architecture](architecture/pipeline_classify_fix.png)
 
 ---
 

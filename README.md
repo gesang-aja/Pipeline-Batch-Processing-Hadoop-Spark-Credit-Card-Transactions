@@ -82,32 +82,9 @@ Proyek ini menggunakan pendekatan containerization dengan Docker untuk mensimula
 | Spark Master     | Mengelola proses komputasi Spark     |
 | Jupyter Notebook | Lingkungan pengembangan dan analisis |
 
-### Alur Sistem
-
-```text
-Dataset Transaksi
-        │
-        ▼
- Hadoop HDFS
-(NameNode + DataNodes)
-        │
-        ▼
- Apache Spark
-(Distributed Processing)
-        │
-        ▼
-Data Preprocessing
-        │
-        ▼
-Fraud Classification Model
-        │
-        ▼
-Model Evaluation
-```
-
+### Arsitektur Sistem
 
 ![Architecture](architecture/architecture.png)
-
 
 ---
 

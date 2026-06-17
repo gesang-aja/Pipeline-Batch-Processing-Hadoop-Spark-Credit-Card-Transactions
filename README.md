@@ -119,10 +119,15 @@ docker ps
 | Spark UI           | http://localhost:8080 |
 
 ---
+## Alur Pemodelan
 
-## Exploratory Data Analysis
+![Architecture](architecture/pipeline_classify_fix.png)
 
-### Distribusi Fraud
+---
+
+### Exploratory Data Analysis
+
+#### Distribusi Fraud
 
 Hasil analisis menunjukkan bahwa dataset memiliki ketidakseimbangan kelas yang sangat tinggi.
 
@@ -130,7 +135,7 @@ Hasil analisis menunjukkan bahwa dataset memiliki ketidakseimbangan kelas yang s
 
 Kondisi ini menyebabkan model berpotensi bias terhadap kelas mayoritas sehingga diperlukan teknik penanganan imbalance.
 
-### Analisis Nilai Transaksi
+#### Analisis Nilai Transaksi
 
 Nilai transaksi dikelompokkan menjadi tiga kategori:
 
@@ -144,7 +149,7 @@ Hasil analisis menunjukkan bahwa transaksi fraud lebih banyak ditemukan pada kel
 
 ---
 
-## Data Preprocessing
+### Data Preprocessing
 
 Tahapan preprocessing yang dilakukan meliputi:
 
@@ -159,20 +164,16 @@ Penanganan data tidak seimbang dilakukan untuk meningkatkan kemampuan model dala
 
 ---
 
-## Pemodelan
+### Pemodelan
 
 Model machine learning digunakan untuk mengklasifikasikan transaksi ke dalam dua kategori:
 
 * Fraud
 * Non-Fraud
 
-### Alur Pemodelan
-
-![Architecture](architecture/pipeline_classify_fix.png)
-
 ---
 
-## Evaluasi Model
+### Evaluasi Model
 
 Karena dataset bersifat imbalanced, evaluasi model difokuskan pada kelas fraud dengan metric:
 
